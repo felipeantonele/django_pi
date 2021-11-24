@@ -106,6 +106,10 @@ def cad_esc(request):
     form = NrRegisterForm(request.POST or None)
     warning = False
     if str(request.method) == 'POST':
+        if 'consulta_escoteiro' in request.POST:
+            id_nr_registro = \
+            NumbersRegisters.objects.filter(number_register=str(request.POST['consulta_escoteiro'])).values_list('id',flat=True)[0]
+            return HttpResponseRedirect('/cad_esc_p2/' + str(id_nr_registro))
         if form.is_valid():
             nr_post = form.cleaned_data['nr']
             #print(nr_post)

@@ -30,6 +30,7 @@
                     {% csrf_token %}
                     {% bootstrap_form form %}
                     {% buttons %}
+                </form>
 
             </div>
             <div class="col-2">
@@ -38,7 +39,6 @@
         </div>
         <!-- <button class="btn btn-primary" type="submit">Buscar</button> -->
         {% endbuttons %}
-        </form>
         {% if was_searched == True %}
         <button onclick="window.location.href='busca'" class="btn btn-primary">Limpar a busca</button><br>
         <p>Resultado: '{{ text_searched }}'</p>
@@ -60,7 +60,14 @@
             <tbody>
                 {% for result in results %}
                 <tr>
-                    <td scope="row">{{ result.id }}</td>
+                    <td scope="row">
+                            <form action="{% url 'cad_esc' %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-info" type="submit"  name="consulta_escoteiro" value='{{ result.number_register }}'>
+                                +
+                                </button>
+                            </form>
+                    </td>
                     <td scope="row">{{ result.number_register }}</td>
                     <td scope="row">{{ result.name_skill }}</td>
                     <td scope="row">{{ result.type_skill }}</td>
@@ -72,8 +79,10 @@
             </tbody>
         </table>
         {% else %}
-        <h3>Área restrita - Usuário não logado</h3><br>
-        <p><a href="/admin/login/?next=/busca">Clique aqui para login</a></p><br><br><br>
+        <center>
+            <h3 style="text-align: center;">Área restrita - Usuário não logado</h3><br>
+            <p><a href="/admin/login/?next=/busca">Clique aqui para login</a></p><br><br><br>
+        </center>
         {% endif %}
         <!-- <a href="cad_esc">Cadastro de escoteiro</a><br><br>
         <a href="cadastro_nrs_registro">Área restrita - Cadastro de números de registro</a><br>

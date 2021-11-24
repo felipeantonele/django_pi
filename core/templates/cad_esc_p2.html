@@ -54,6 +54,7 @@
                     {% endif %}
                     {% endbuttons %}
                 </div>
+            </div>
         </form>
     </div>
     <div>
@@ -64,12 +65,14 @@
                     {% csrf_token %}
                     <input type="submit" class="btn btn-secondary" name="apenas_continuar"
                         value="Continuar sem alterar">
+                </form>
             </div>
 
             <div class="col-2">
                 <form action="{% url 'cad_esc_p2' data1.id %}" method="post">
                     {% csrf_token %}
                     <input type="submit" class="btn btn-danger" name="delete_associate_data" value="Deletar cadastro">
+                </form>
             </div>
             <div class="col-1">
                 <input type=button class="btn btn-secondary" value=" Voltar" onClick="javascript:history.go(-1);">

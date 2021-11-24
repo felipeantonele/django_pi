@@ -59,10 +59,12 @@
     {% endif %}
 
     {% else %}
-    <p>Necessário fazer login</p>
-    <a href="/admin/login/?next=/cadastro_nrs_registro">Clique aqui para login</a><br><br><br>
-    {% endif %}
-    <br>
+    <center>
+      <h3 style="text-align: center;">Área restrita - Usuário não logado</h3><br>
+      <a href="/admin/login/?next=/cadastro_nrs_registro">Clique aqui para login</a><br><br><br>
+      {% endif %}
+      <br>
+    </center>
     <!-- <a href="cad_esc">Ir para o cadastro de escoteiros e Associados</a><br>
         <a href="admin/">ADMIN</a><br>
         <a href="/">Página Inicial</a><br> -->
