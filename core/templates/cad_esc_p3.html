@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    {% bootstrap_css %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    {% block content %}
+    <center>
+        <br><b>Dados do escoteiro selecioando</b><br><br>
+        <b>Número de Registro</b>
+    </center>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col"><b>Escoteiro ID: </b>{{ data1.id }}</th>
+                    <th scope="col"><b>Número de registro: </b>{{ data1.number_register }}</th>
+                    <th scope="col"><b>Seção: </b>{{ data1.section }}</th>
+                </tr>
+            <!-- <tbody> -->
+                <tr>
+                    <th scope="col"><b>Primeira função: </b>{{ data1.function_first }}</th>
+                    <th scope="col"><b>Segunda função: </b>{{ data1.function_second }}</th>
+                    <th scope="col"><b>Terceira função: </b>{{ data.function_third }}</th>
+                </tr>
+            </thead>
+            <!--</tbody>    -->
+        </table>
+    </div>
+    <center>
+        <b>Dados do Escoteiro</b>
+    </center>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2"><b>Escoteiro: </b>{{ data2.name }}</th>
+                </tr>
+                <tr>
+                    <th scope="col"><b>Responsável 1: </b>{{ data2.responsible_1 }}</th>
+                    <th scope="col"><b>Responsável 2: </b>{{ data2.responsible_2 }}</th>
+                </tr>
+                <tr>
+                    <th scope="col"><b>Telefone: </b>{{ data2.phone }}</th>
+                    <th scope="col"><b>E-mail: </b>{{ data2.email }}</th>
+                </tr>
+                <tr>
+                    <th scope="col"><b>Data de criação: </b>{{ data2.date_creation }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <center>
+        <b>Habilidade selecionada</b>
+    </center>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col"><b>Tipo: </b>{{ data3.type_skill }}</th>
+                    <th scope="col"><b>Habilidade: </b>{{ data3.name_skill }}</th>
+                </tr>
+                <tr>
+                    <th scope="col"><b>Pessoa Associada a Habilidade: </b>{{ data3.name_person }}</th>
+                    <th scope="col"><b>Tipo de pessoa Associada a Habilidade: </b>{{ data3.type_person }}</th>
+                </tr>
+                <tr>
+                    <th scope="col" colspan="3"><b>Anotações: </b>{{ data3.notes }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+    <div>
+        <div class="row">
+            <div class="col-1">
+                <input type=button class="btn btn-secondary" value=" Voltar" onClick="javascript:history.go(-1);">
+            </div>
+        </div>
+
+        {% bootstrap_javascript jquery='full' %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

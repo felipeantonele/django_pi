@@ -107,9 +107,9 @@ def cad_esc(request):
     warning = False
     if str(request.method) == 'POST':
         if 'consulta_escoteiro' in request.POST:
-            id_nr_registro = \
-            NumbersRegisters.objects.filter(number_register=str(request.POST['consulta_escoteiro'])).values_list('id',flat=True)[0]
-            return HttpResponseRedirect('/cad_esc_p2/' + str(id_nr_registro))
+            nr = Skills.objects.filter(id=str(request.POST['consulta_escoteiro'])).values_list('number_register',flat=True)[0]
+            id_nr_registro = NumbersRegisters.objects.filter(number_register=nr).values_list('id',flat=True)[0]
+            return HttpResponseRedirect('/cad_esc_p3/' + str(id_nr_registro) + '/' + str(request.POST['consulta_escoteiro']))
         if form.is_valid():
             nr_post = form.cleaned_data['nr']
             #print(nr_post)
@@ -126,6 +126,21 @@ def cad_esc(request):
         'warning': warning,
     }
     return render(request, 'cadastro_escoteiro.html', context)
+
+
+def cad_esc_p3(request, pk, id_skill): # pk é o id do numero de registro
+    nr = NumbersRegisters.objects.filter(id=str(pk)).values_list('number_register', flat=True)[0]
+    data1 = NumbersRegisters.objects.get(id=pk)
+    data2 = AssociateData.objects.get(number_register=str(nr))
+    data3 = Skills.objects.get(id=id_skill)
+    context = {
+        'data1': data1,
+        'data2': data2,
+        'data3': data3,
+        #'pca': possui_cad_associatedata,
+        'logado': (str(request.user) != 'AnonymousUser'),
+    }
+    return render(request, 'cad_esc_p3.html', context)
 
 
 def cad_esc_p2(request, pk):

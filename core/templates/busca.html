@@ -63,7 +63,7 @@
                     <td scope="row">
                             <form action="{% url 'cad_esc' %}" method="post">
                                 {% csrf_token %}
-                                <button class="btn btn-info" type="submit"  name="consulta_escoteiro" value='{{ result.number_register }}'>
+                                <button class="btn btn-info" type="submit"  name="consulta_escoteiro" value='{{ result.id }}'>
                                 +
                                 </button>
                             </form>
