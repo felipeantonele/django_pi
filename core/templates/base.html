@@ -21,7 +21,9 @@
   <div class="container-fluid">
   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <img src="{% static 'images/logo_escoteiros_brasil.png' %}" width="300px">
+      <a  href="/">
+        <img src="{% static 'images/logo_escoteiros_brasil.png' %}" width="300px">
+      </a>
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,31 +36,31 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li> 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cad_esc">Cadastro de escoteiro</a>
+              <a class="nav-link active" aria-current="page" href="/cad_esc">Cadastro de escoteiro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="busca">Buscar escoteiro</a>
+              <a class="nav-link active" aria-current="page" href="/busca">Buscar escoteiro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cadastro_nrs_registro">Cadastrar registro</a>
+              <a class="nav-link active" aria-current="page" href="/cadastro_nrs_registro">Cadastrar registro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="admin">Área administrativa</a>
+              <a class="nav-link active" aria-current="page" href="/admin">Área administrativa</a>
             </li>
             {% else %}
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cad_esc">Cadastro de escoteiro</a>
+              <a class="nav-link active" aria-current="page" href="/cad_esc">Cadastro de escoteiro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Buscar escoteiro</a>
+              <a class="nav-link active" href="/admin/login/?next=/busca" style="color:red;">Buscar escoteiro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Cadastrar número de registro</a>
+              <a class="nav-link active" href="/admin/login/?next=/cadastro_nrs_registro" style="color:red;">Cadastrar número de registro</a>
             </li>
           </ul>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin">Área administrativa</a>
+            <a class="nav-link active" aria-current="page" href="/admin">Área administrativa</a>
           </li>
           {% endif %}
         </div>
