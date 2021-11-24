@@ -19,70 +19,70 @@
           </form> -->
         {% if logado == True %}
 
-        {% bootstrap_messages %}
-        <div class="row">
-            <div class="col-2">
-                <p>Digite uma palavra para buscar: </p>
-            </div>
-            <div class="col-8">
-                <form class="d-flex" action="{% url 'busca' %}" method="post" class="form" autocomplete="off"
-                    enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    {% buttons %}
-                </form>
+            {% bootstrap_messages %}
+            <div class="row">
+                <div class="col-2">
+                    <p>Digite uma palavra para buscar: </p>
+                </div>
+                <div class="col-8">
+                    <form class="d-flex" action="{% url 'busca' %}" method="post" class="form" autocomplete="off"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                    </form>
 
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
             </div>
-            <div class="col-2">
-                <button class="btn btn-primary" type="submit">Buscar</button>
-            </div>
-        </div>
-        <!-- <button class="btn btn-primary" type="submit">Buscar</button> -->
-        {% endbuttons %}
-        {% if was_searched == True %}
-        <button onclick="window.location.href='busca'" class="btn btn-primary">Limpar a busca</button><br>
-        <p>Resultado: '{{ text_searched }}'</p>
+            <!-- <button class="btn btn-primary" type="submit">Buscar</button> -->
+            {% endbuttons %}
+            {% if was_searched == True %}
+                <button onclick="window.location.href='busca'" class="btn btn-primary">Limpar a busca</button><br>
+                <p>Resultado: '{{ text_searched }}'</p>
+            {% else %}
+                <p>{{ qtd }} recentes competências e habilidades cadastradas (limite é 10)</p>
+            {% endif %}
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Número de Registro</th>
+                        <th scope="col">Nome da Competência/Habilidade</th>
+                        <th scope="col">Tipo de Competência/Habilidade</th>
+                        <th scope="col">Nome da pessoa</th>
+                        <th scope="col">Tipo de associação com o escoteiro</th>
+                        <th scope="col">Anotações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td scope="row">
+                                <form action="{% url 'cad_esc' %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="btn btn-info" type="submit"  name="consulta_escoteiro" value='{{ result.id }}'>
+                                    +
+                                    </button>
+                                </form>
+                        </td>
+                        <td scope="row">{{ result.number_register }}</td>
+                        <td scope="row">{{ result.name_skill }}</td>
+                        <td scope="row">{{ result.type_skill }}</td>
+                        <td scope="row">{{ result.name_person }}</td>
+                        <td scope="row">{{ result.type_person }}</td>
+                        <td scope="row">{{ result.notes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% else %}
-        <p>{{ qtd }} recentes competências e habilidades cadastradas (limite é 10)</p>
-        {% endif %}
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Número de Registro</th>
-                    <th scope="col">Nome da Competência/Habilidade</th>
-                    <th scope="col">Tipo de Competência/Habilidade</th>
-                    <th scope="col">Nome da pessoa</th>
-                    <th scope="col">Tipo de associação com o escoteiro</th>
-                    <th scope="col">Anotações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in results %}
-                <tr>
-                    <td scope="row">
-                            <form action="{% url 'cad_esc' %}" method="post">
-                                {% csrf_token %}
-                                <button class="btn btn-info" type="submit"  name="consulta_escoteiro" value='{{ result.id }}'>
-                                +
-                                </button>
-                            </form>
-                    </td>
-                    <td scope="row">{{ result.number_register }}</td>
-                    <td scope="row">{{ result.name_skill }}</td>
-                    <td scope="row">{{ result.type_skill }}</td>
-                    <td scope="row">{{ result.name_person }}</td>
-                    <td scope="row">{{ result.type_person }}</td>
-                    <td scope="row">{{ result.notes }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <center>
-            <h3 style="text-align: center;">Área restrita - Usuário não logado</h3><br>
-            <p><a href="/admin/login/?next=/busca">Clique aqui para login</a></p><br><br><br>
-        </center>
+            <center>
+                <h3 style="text-align: center;">Área restrita - Usuário não logado</h3><br>
+                <p><a href="/admin/login/?next=/busca">Clique aqui para login</a></p><br><br><br>
+            </center>
         {% endif %}
         <!-- <a href="cad_esc">Cadastro de escoteiro</a><br><br>
         <a href="cadastro_nrs_registro">Área restrita - Cadastro de números de registro</a><br>
