@@ -11,17 +11,36 @@
 <body>
     {% block content %}
     <div class="container">
-        <h1>Competências - Associados ao Escoteiro</h1>
-        <p>Número de registro: {{ data1.number_register }}</p>
-        <p>Nome do Escoteiro: {{ data2.function_first }}</p>
-        <p>Responsável 1: {{ data2.responsible_1 }}</p>
-        <p>Responsável 2: {{ data2.responsible_2 }}</p>
-        <p>Telefone: {{ data2.phone }}</p>
-        <p>E-mail: {{ data2.email }}</p>
-        <p>Primeira função: {{ data1.function_first }}</p>
-        <p>Seção: {{ data1.section }}</p>
-
+        <center>
+            <br><b>Competências - Associados ao Escoteiro</b><br><br>
+        </center>
+        <div class="container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"><b>Nome do Escoteiro: </b>{{ data2.name }}</th>
+                        <th scope="col"><b>Número de registro: </b>{{ data1.number_register }}</th>
+                    </tr>
+                <!-- <tbody> -->
+                    <tr>
+                        <th scope="col"><b>Responsável 1: </b>{{ data2.responsible_1 }}</th>
+                        <th scope="col"><b>Responsável 2: </b>{{ data2.responsible_2 }}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col"><b>Telefone: </b>{{ data2.phone }}</th>
+                        <th scope="col"><b>E-mail: </b>{{ data2.email }}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col"><b>Primeira função: </b>{{ data1.function_first }}</th>
+                        <th scope="col"><b>Seção: </b>{{ data1.section }}</th>
+                    </tr>
+                </thead>
+                <!--</tbody>    -->
+            </table>
+        </div>
         {% bootstrap_messages %}
+
+            <br><b>Formulário Competências</b><br><br>
 
         <form action="{% url 'cadastro_atividade' data2.id %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
             {% csrf_token %}
